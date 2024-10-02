@@ -1,0 +1,429 @@
+VERSION: 0.3
+
+==============================================================
+Variant: 13
+==============================================================
+
+Called Hello function from dll
+Error: couldn`t open config file 'config_13'
+
+B:\mbks\python_2_lab\env\lib\site-packages\winappdbg\debug.py:502: MixedBitsWarning: Mixture of 32 and 64 bits is considered experimental. Use at your own risk!  
+  warnings.warn(msg, MixedBitsWarning)
+
+-------------------------------------------------------------------------------
+Interactive debugging session started.
+Use the "help" command to list all available commands.
+Use the "quit" command to close this session.
+-------------------------------------------------------------------------------
+
+Started process 16552 at 0x00000000006112a0
+Started thread 8284 at vuln13!start
+Loaded module (0000000000610000) C:\mbks\python_2_lab\exe\vuln13.exe
+Loaded module (00007FF8D2B90000) C:\Windows\System32\ntdll.dll
+Loaded module (0000000077BE0000) C:\Windows\SysWOW64\ntdll.dll
+Loaded module (00007FF8D2570000) C:\Windows\System32\wow64.dll
+Loaded module (00007FF8D0D20000) C:\Windows\System32\wow64win.dll
+
+Breakpoint (80000003) at address 00007FF8D2C60820 (first chance)
+B:\mbks\python_2_lab\env\lib\site-packages\winappdbg\module.py:291: RuntimeWarning: Cannot get size and entry point of module ntdll, reason: ═хтхЁэ√щ фхёъЁшяЄюЁ. 
+  % (self.get_name(), e.strerror), RuntimeWarning)
+
+eax=006112a0 ebx=00fda000 ecx=00000000 edx=00000000 esi=00000000 edi=00000000
+eip=77c555e0 esp=011ff864 ebp=00000000 iopl=0         no up ei pl nz na po nc
+cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00000202
+ntdll!RtlUserThreadStart:
+0000000077C555E0: 83 3d d8 69 d0 77 00 74 0e 8b 0d d8 69 d0 77
+
+16552:8284>
+16552:8284> fs
+*** Unknown syntax: fs
+16552:8284> u  
+*** Error: can't disassemble address 0000000077C555E0
+16552:8284> j
+*** Unknown syntax: j
+16552:8284> exit
+*** Unknown syntax: exit
+16552:8284> g
+Loaded module (0000000077BD0000) C:\Windows\System32\wow64cpu.dll
+Loaded module (00000000777E0000) C:\Windows\SysWOW64\KERNEL32.DLL
+Loaded module (0000000077110000) C:\Windows\SysWOW64\KERNELBASE.dll
+Started thread 20636 at ntdll!TpCallbackIndependent+0x140
+Loaded module (0000000077430000) C:\Windows\SysWOW64\msvcrt.dll
+Started thread 14720 at ntdll!TpCallbackIndependent+0x140
+Loaded module (0000000062500000) B:\mbks\python_2_lab\exe\func.dll
+Started thread 20876 at ntdll!TpCallbackIndependent+0x140
+
+WOW64 breakpoint (4000001F) at address 0000000077C91B72 (first chance)
+
+eax=00000000 ebx=00000000 ecx=c6700000 edx=00000000 esi=77be6998 edi=77be691c
+eip=77c91b73 esp=011ff290 ebp=011ff2bc iopl=0         no up ei pl zr na pe nc
+cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00000246
+ntdll!LdrInitShimEngineDynamic+0x6e3:
+0000000077C91B73: eb 07 33 c0 40 c3 8b 65 e8 c7 45 fc fe ff ff
+
+16552:8284> g
+Thread 14720 terminated, exit code 4294967295
+Thread 20876 terminated, exit code 4294967295
+Thread 20636 terminated, exit code 4294967295
+Process 16552 terminated, exit code 4294967295
+> 
+> ^Z
+*** Unknown syntax: EOF
+> >
+> 
+> e
+*** Error: no current process set
+>
+*** Error: no current process set
+> ^Z
+*** Unknown syntax: EOF
+> > ^Z^Z^Z^Z
+*** Unknown syntax: EOF
+> *** Unknown syntax: EOF
+> >
+> q 
+
+-------------------------------------------------------------------------------
+Interactive debugging session closed.
+-------------------------------------------------------------------------------
+
+('File mutation #', 2)
+('Current offset: ', 1)
+('Test case`s index: ', 1)
+Launch program...
+Program finished with status  -1
+
+VERSION: 0.3
+
+==============================================================
+Variant: 13
+==============================================================
+
+Called Hello function from dll
+Error: couldn`t open config file 'config_13'
+
+
+-------------------------------------------------------------------------------
+Interactive debugging session started.
+Use the "help" command to list all available commands.
+Use the "quit" command to close this session.
+-------------------------------------------------------------------------------
+
+Started process 5636 at 0x00000000006112a0
+Started thread 676 at vuln13!start
+Loaded module (0000000000610000) C:\mbks\python_2_lab\exe\vuln13.exe
+Loaded module (00007FF8D2B90000) C:\Windows\System32\ntdll.dll
+Loaded module (0000000077BE0000) C:\Windows\SysWOW64\ntdll.dll
+Loaded module (00007FF8D2570000) C:\Windows\System32\wow64.dll
+Loaded module (00007FF8D0D20000) C:\Windows\System32\wow64win.dll
+
+Breakpoint (80000003) at address 00007FF8D2C60820 (first chance)
+
+eax=006112a0 ebx=00971000 ecx=00000000 edx=00000000 esi=00000000 edi=00000000
+eip=77c555e0 esp=00bfff60 ebp=00000000 iopl=0         no up ei pl nz na po nc
+cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00000202
+ntdll!RtlUserThreadStart:
+0000000077C555E0: 83 3d d8 69 d0 77 00 74 0e 8b 0d d8 69 d0 77
+
+5636:676> g
+Loaded module (0000000077BD0000) C:\Windows\System32\wow64cpu.dll
+Loaded module (00000000777E0000) C:\Windows\SysWOW64\KERNEL32.DLL
+Loaded module (0000000077110000) C:\Windows\SysWOW64\KERNELBASE.dll
+Started thread 17312 at ntdll!TpCallbackIndependent+0x140
+Loaded module (0000000077430000) C:\Windows\SysWOW64\msvcrt.dll
+Started thread 980 at ntdll!TpCallbackIndependent+0x140
+Loaded module (0000000062500000) B:\mbks\python_2_lab\exe\func.dll
+Started thread 17980 at ntdll!TpCallbackIndependent+0x140
+
+WOW64 breakpoint (4000001F) at address 0000000077C91B72 (first chance)
+
+eax=00000000 ebx=00000000 ecx=fce20000 edx=00000000 esi=77be6998 edi=77be691c
+eip=77c91b73 esp=00bff98c ebp=00bff9b8 iopl=0         no up ei pl zr na pe nc
+cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00000246
+ntdll!LdrInitShimEngineDynamic+0x6e3:
+0000000077C91B73: eb 07 33 c0 40 c3 8b 65 e8 c7 45 fc fe ff ff
+
+5636:676> q
+There's a program still running.
+Are you sure? (y/N): n 
+5636:676> y 
+*** Unknown syntax: y
+5636:676> g
+Thread 17980 terminated, exit code 4294967295
+Thread 17312 terminated, exit code 4294967295
+Thread 980 terminated, exit code 4294967295
+Process 5636 terminated, exit code 4294967295
+> 
+> q
+
+-------------------------------------------------------------------------------
+Interactive debugging session closed.
+-------------------------------------------------------------------------------
+
+('File mutation #', 3)
+('Current offset: ', 1)
+('Test case`s index: ', 2)
+Launch program...
+Program finished with status  -1
+
+VERSION: 0.3
+
+==============================================================
+Variant: 13
+==============================================================
+
+Called Hello function from dll
+Error: couldn`t open config file 'config_13'
+
+
+-------------------------------------------------------------------------------
+Interactive debugging session started.
+Use the "help" command to list all available commands.
+Use the "quit" command to close this session.
+-------------------------------------------------------------------------------
+
+Started process 20788 at 0x00000000006112a0
+Started thread 14564 at vuln13!start
+Loaded module (0000000000610000) C:\mbks\python_2_lab\exe\vuln13.exe
+Loaded module (00007FF8D2B90000) C:\Windows\System32\ntdll.dll
+Loaded module (0000000077BE0000) C:\Windows\SysWOW64\ntdll.dll
+Loaded module (00007FF8D2570000) C:\Windows\System32\wow64.dll
+Loaded module (00007FF8D0D20000) C:\Windows\System32\wow64win.dll
+
+Breakpoint (80000003) at address 00007FF8D2C60820 (first chance)
+
+eax=006112a0 ebx=00c7f000 ecx=00000000 edx=00000000 esi=00000000 edi=00000000
+eip=77c555e0 esp=00fff900 ebp=00000000 iopl=0         no up ei pl nz na po nc
+cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00000202
+ntdll!RtlUserThreadStart:
+0000000077C555E0: 83 3d d8 69 d0 77 00 74 0e 8b 0d d8 69 d0 77
+
+20788:14564> q
+There's a program still running.
+Are you sure? (y/N): y
+
+-------------------------------------------------------------------------------
+Interactive debugging session closed.
+-------------------------------------------------------------------------------
+
+('File mutation #', 4)
+('Current offset: ', 1)
+('Test case`s index: ', 3)
+Launch program...
+Program finished with status  -1
+
+VERSION: 0.3
+
+==============================================================
+Variant: 13
+==============================================================
+
+Called Hello function from dll
+Error: couldn`t open config file 'config_13'
+
+
+-------------------------------------------------------------------------------
+Interactive debugging session started.
+Use the "help" command to list all available commands.
+Use the "quit" command to close this session.
+-------------------------------------------------------------------------------
+
+Started process 14788 at 0x00000000006112a0
+Started thread 19048 at vuln13!start
+Loaded module (0000000000610000) C:\mbks\python_2_lab\exe\vuln13.exe
+Loaded module (00007FF8D2B90000) C:\Windows\System32\ntdll.dll
+Loaded module (0000000077BE0000) C:\Windows\SysWOW64\ntdll.dll
+Loaded module (00007FF8D2570000) C:\Windows\System32\wow64.dll
+Loaded module (00007FF8D0D20000) C:\Windows\System32\wow64win.dll
+
+Breakpoint (80000003) at address 00007FF8D2C60820 (first chance)
+
+eax=006112a0 ebx=00e74000 ecx=00000000 edx=00000000 esi=00000000 edi=00000000
+eip=77c555e0 esp=0128fe18 ebp=00000000 iopl=0         no up ei pl nz na po nc
+cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00000202
+ntdll!RtlUserThreadStart:
+0000000077C555E0: 83 3d d8 69 d0 77 00 74 0e 8b 0d d8 69 d0 77
+
+14788:19048> q
+There's a program still running.
+Are you sure? (y/N): y
+
+-------------------------------------------------------------------------------
+Interactive debugging session closed.
+-------------------------------------------------------------------------------
+
+('File mutation #', 5)
+('Current offset: ', 1)
+('Test case`s index: ', 4)
+Launch program...
+Program finished with status  -1
+
+VERSION: 0.3
+
+==============================================================
+Variant: 13
+==============================================================
+
+Called Hello function from dll
+Error: couldn`t open config file 'config_13'
+
+
+-------------------------------------------------------------------------------
+Interactive debugging session started.
+Use the "help" command to list all available commands.
+Use the "quit" command to close this session.
+-------------------------------------------------------------------------------
+
+Started process 744 at 0x00000000006112a0
+Started thread 20284 at vuln13!start
+Loaded module (0000000000610000) C:\mbks\python_2_lab\exe\vuln13.exe
+Loaded module (00007FF8D2B90000) C:\Windows\System32\ntdll.dll
+Loaded module (0000000077BE0000) C:\Windows\SysWOW64\ntdll.dll
+Loaded module (00007FF8D2570000) C:\Windows\System32\wow64.dll
+Loaded module (00007FF8D0D20000) C:\Windows\System32\wow64win.dll
+
+Breakpoint (80000003) at address 00007FF8D2C60820 (first chance)
+
+eax=006112a0 ebx=002f2000 ecx=00000000 edx=00000000 esi=00000000 edi=00000000
+eip=77c555e0 esp=005fff10 ebp=00000000 iopl=0         no up ei pl nz na po nc
+cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00000202
+ntdll!RtlUserThreadStart:
+0000000077C555E0: 83 3d d8 69 d0 77 00 74 0e 8b 0d d8 69 d0 77
+
+744:20284> q
+There's a program still running.
+Are you sure? (y/N): q
+744:20284> q
+There's a program still running.
+Are you sure? (y/N): q
+744:20284> q
+There's a program still running.
+Are you sure? (y/N): qqq
+744:20284> 
+There's a program still running.
+Are you sure? (y/N): y
+
+-------------------------------------------------------------------------------
+Interactive debugging session closed.
+-------------------------------------------------------------------------------
+
+('File mutation #', 6)
+('Current offset: ', 1)
+('Test case`s index: ', 5)
+Launch program...
+Program finished with status  -1
+
+VERSION: 0.3
+
+==============================================================
+Variant: 13
+==============================================================
+
+Called Hello function from dll
+Error: couldn`t open config file 'config_13'
+
+
+-------------------------------------------------------------------------------
+Interactive debugging session started.
+Use the "help" command to list all available commands.
+Use the "quit" command to close this session.
+-------------------------------------------------------------------------------
+
+Started process 17956 at 0x00000000006112a0
+Started thread 4636 at vuln13!start
+Loaded module (0000000000610000) C:\mbks\python_2_lab\exe\vuln13.exe
+Loaded module (00007FF8D2B90000) C:\Windows\System32\ntdll.dll
+Loaded module (0000000077BE0000) C:\Windows\SysWOW64\ntdll.dll
+Loaded module (00007FF8D2570000) C:\Windows\System32\wow64.dll
+Loaded module (00007FF8D0D20000) C:\Windows\System32\wow64win.dll
+
+Breakpoint (80000003) at address 00007FF8D2C60820 (first chance)
+
+eax=006112a0 ebx=00a53000 ecx=00000000 edx=00000000 esi=00000000 edi=00000000
+eip=77c555e0 esp=00dffef0 ebp=00000000 iopl=0         no up ei pl nz na po nc
+cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00000202
+ntdll!RtlUserThreadStart:
+0000000077C555E0: 83 3d d8 69 d0 77 00 74 0e 8b 0d d8 69 d0 77
+
+17956:4636> exit
+*** Unknown syntax: exit
+17956:4636> f
+*** Error: missing parameter: string
+17956:4636> m
+
+Address          Size             State    Access  Type    File
+0000000000000000 0000000000610000 Free
+0000000000610000 0000000000001000 Commited R-- --- Image   B:\mbks\python_2_lab\exe\vuln13.exe
+0000000000611000 0000000000008000 Commited R-X --- Image   B:\mbks\python_2_lab\exe\vuln13.exe
+0000000000619000 0000000000001000 Commited RC- --- Image   B:\mbks\python_2_lab\exe\vuln13.exe
+000000000061A000 0000000000003000 Commited R-- --- Image   B:\mbks\python_2_lab\exe\vuln13.exe
+000000000061D000 0000000000001000 Commited RC- --- Image   B:\mbks\python_2_lab\exe\vuln13.exe
+000000000061E000 0000000000001000 Commited R-- --- Image   B:\mbks\python_2_lab\exe\vuln13.exe
+000000000061F000 0000000000003000 Commited RC- --- Image   B:\mbks\python_2_lab\exe\vuln13.exe
+0000000000622000 0000000000001000 Commited R-- --- Image   B:\mbks\python_2_lab\exe\vuln13.exe
+0000000000623000 000000000030D000 Free
+0000000000930000 0000000000003000 Commited RW- --- Private
+0000000000933000 000000000000D000 Free
+0000000000940000 000000000001D000 Commited R-- --- Mapped
+000000000095D000 0000000000003000 Free
+0000000000960000 0000000000035000 Reserved         Private
+0000000000995000 0000000000003000 Commited RW- G-- Private
+0000000000998000 0000000000008000 Commited RW- --- Private
+00000000009A0000 0000000000004000 Commited R-- --- Mapped
+00000000009A4000 000000000000C000 Free
+00000000009B0000 0000000000002000 Commited RW- --- Private
+00000000009B2000 000000000003E000 Free
+00000000009F0000 0000000000005000 Commited RW- --- Private
+00000000009F5000 000000000000B000 Reserved         Private
+0000000000A00000 0000000000052000 Reserved         Private
+0000000000A52000 0000000000005000 Commited RW- --- Private
+0000000000A57000 00000000001A9000 Reserved         Private
+0000000000C00000 00000000001FD000 Reserved         Private
+0000000000DFD000 0000000000002000 Commited RW- G-- Private
+0000000000DFF000 0000000000001000 Commited RW- --- Private
+0000000000E00000 0000000076DE0000 Free
+0000000077BE0000 0000000000001000 Commited R-- --- Image   C:\Windows\SysWOW64\ntdll.dll
+0000000077BE1000 0000000000122000 Commited R-X --- Image   C:\Windows\SysWOW64\ntdll.dll
+0000000077D03000 0000000000006000 Commited RC- --- Image   C:\Windows\SysWOW64\ntdll.dll
+0000000077D09000 0000000000001000 Commited RW- --- Image   C:\Windows\SysWOW64\ntdll.dll
+0000000077D0A000 0000000000002000 Commited RC- --- Image   C:\Windows\SysWOW64\ntdll.dll
+0000000077D0C000 0000000000078000 Commited R-- --- Image   C:\Windows\SysWOW64\ntdll.dll
+0000000077D84000 00000000074FC000 Free
+000000007F280000 0000000000010000 Reserved         Private
+000000007F290000 0000000000001000 Commited RW- --- Private
+000000007F291000 000000000000F000 Free
+000000007F2A0000 0000000000001000 Reserved         Private
+000000007F2A1000 0000000000001000 Commited RW- --- Private
+000000007F2A2000 000000000000E000 Free
+000000007F2B0000 0000000000001000 Commited R-- --- Mapped
+000000007F2B1000 000000000000F000 Free
+000000007F2C0000 0000000000023000 Commited R-- --- Mapped
+000000007F2E3000 0000000000CFD000 Free
+000000007FFE0000 0000000000001000 Commited R-- --- Private
+000000007FFE1000 000000000000D000 Free
+000000007FFEE000 0000000000001000 Commited R-- --- Private
+000000007FFEF000 0000000000001000 Free
+000000007FFF0000 0000000080010000 Reserved         Private
+0000000100000000 00007FF7D0D20000 Free
+00007FF8D0D20000 0000000000001000 Commited R-- --- Image   C:\Windows\System32\wow64win.dll
+00007FF8D0D21000 0000000000045000 Commited R-X --- Image   C:\Windows\System32\wow64win.dll
+00007FF8D0D66000 0000000000029000 Commited R-- --- Image   C:\Windows\System32\wow64win.dll
+00007FF8D0D8F000 0000000000001000 Commited RW- --- Image   C:\Windows\System32\wow64win.dll
+00007FF8D0D90000 0000000000003000 Commited RC- --- Image   C:\Windows\System32\wow64win.dll
+00007FF8D0D93000 0000000000010000 Commited R-- --- Image   C:\Windows\System32\wow64win.dll
+00007FF8D0DA3000 00000000017CD000 Free
+00007FF8D2570000 0000000000001000 Commited R-- --- Image   C:\Windows\System32\wow64.dll
+00007FF8D2571000 0000000000039000 Commited R-X --- Image   C:\Windows\System32\wow64.dll
+00007FF8D25AA000 0000000000015000 Commited R-- --- Image   C:\Windows\System32\wow64.dll
+00007FF8D25BF000 0000000000001000 Commited RW- --- Image   C:\Windows\System32\wow64.dll
+00007FF8D25C0000 0000000000001000 Commited RC- --- Image   C:\Windows\System32\wow64.dll
+00007FF8D25C1000 0000000000008000 Commited R-- --- Image   C:\Windows\System32\wow64.dll
+00007FF8D25C9000 00000000005C7000 Free
+00007FF8D2B90000 0000000000001000 Commited R-- --- Image   C:\Windows\System32\ntdll.dll
+00007FF8D2B91000 000000000011C000 Commited R-X --- Image   C:\Windows\System32\ntdll.dll
+00007FF8D2CAD000 0000000000049000 Commited R-- --- Image   C:\Windows\System32\ntdll.dll
+00007FF8D2CF6000 0000000000001000 Commited RW- --- Image   C:\Windows\System32\ntdll.dll
+00007FF8D2CF7000 0000000000002000 Commited RC- --- Image   C:\Windows\System32\ntdll.dll
+00007FF8D2CF9000 0000000000009000 Commited RW- --- Image   C:\Windows\System32\ntdll.dll
+00007FF8D2D02000 0000000000086000 Commited R-- --- Image   C:\Windows\System32\ntdll.dll
+00007FF8D2D88000 000000072D268000 Free
