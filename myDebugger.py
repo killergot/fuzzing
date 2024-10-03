@@ -10,6 +10,3 @@ def simple_debugger(argv):
     finally:
         debug.stop()
     return
-
-
-

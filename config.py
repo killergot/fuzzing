@@ -2,7 +2,7 @@ import shutil
 import fileFuzzer
 
 exe_path = "B:\\mbks\\python_2_lab\\exe\\vuln13.exe"
-config_path = "B:\\mbks\\python_2_lab\\exe\\config_13"
+config_path = "B:\\mbks\\python_2_lab\\config_13"
 mut_folder_path = "B:\\mbks\\python_2_lab\\exe\\mutations"
 
 fuzzer = fileFuzzer.FileFuzzer(exe_path, config_path, mut_folder_path)
