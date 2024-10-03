@@ -1,4 +1,3 @@
-import os
 from config import *
 
 if __name__ == "__main__":
@@ -14,7 +13,11 @@ if __name__ == "__main__":
     }
     while True:
         menu_bar()
-        command = input("Enter command: ")
+        command = raw_input("Enter command: ")
+        try:
+            command = int(command)
+        except:
+            print('ValueError')
         if command in unit_to_complete:
             unit_to_complete[command](fuzzer)
         else:

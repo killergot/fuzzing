@@ -3,6 +3,7 @@ import fileFuzzer
 
 exe_path = "B:\\mbks\\python_2_lab\\exe\\vuln13.exe"
 config_path = "B:\\mbks\\python_2_lab\\config_13"
+config_path_default = "B:\\mbks\\python_2_lab\\exe\\config_13_default"
 mut_folder_path = "B:\\mbks\\python_2_lab\\exe\\mutations"
 
 fuzzer = fileFuzzer.FileFuzzer(exe_path, config_path, mut_folder_path)
@@ -48,7 +49,7 @@ def command_six_find_div_fields(fuzzer):
 
 def command_seven_reborn_config(_):
     try:
-        shutil.copy2('exe\\config_13_default', 'exe\\config_13')
+        shutil.copy2(config_path_default, config_path)
         print('Succesfull complete')
     except:
         print('smt wrong:/')

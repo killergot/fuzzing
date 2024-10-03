@@ -28,39 +28,38 @@ class FileFuzzer:
             fd.close()
 
     def auto_fuzzing(self):
-        checker = 1
-        while checker == 1:
+        error = False
+        while not error:
             counter = 0
-            self.change_bytes(self.offset, self.offset, counter, 1)
+            for iterator in self.test_cases:
+                self.change_bytes(self.offset, self.offset, counter, 1)
+                print("File mutation #", self.iteration)
+                print("Current offset: ", self.offset)
+                print("Test case`s index: ", counter)
 
-            print("File mutation #", self.iteration)
-            print ("Current offset: ", self.offset)
-            print ("Test case`s index: ", counter)
+                # New debugging thread
+                print("Launch program...")
+                proc = subprocess.Popen([self.exe_path], stdout=subprocess.PIPE)
+                status = subprocess.Popen.wait(proc)
 
-            # New debugging thread
-            self.start_debugger()
+                print("Program finished with status "), status
+                print(proc.stdout.read())
 
-            fd = open(self.conf_file_path, "wb")
-            fd.write(self.stream)
-            fd.close()
+                if status != 0:
+                    self.save_config()
+                    myDebugger.simple_debugger([self.exe_path])
+                    error = True
+                    break
 
-            self.iteration += 1
-            counter += 1
+                fd = open(self.conf_file_path, "wb")
+                fd.write(self.stream)
+                fd.close()
+
+                self.iteration += 1
+                counter += 1
 
             self.offset += 1
-            checker = input("If u want continue press 1:")
 
-    def start_debugger(self):
-        print("Launch program...")
-        proc = subprocess.Popen([self.exe_path], stdout=subprocess.PIPE)
-        status = subprocess.Popen.wait(proc)
-
-        print("Program finished with status "), status
-        print(proc.stdout.read())
-
-        if status != 0:
-            self.save_config()
-            myDebugger.simple_debugger([self.exe_path])
         return
 
     def save_config(self):
