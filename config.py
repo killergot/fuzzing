@@ -5,7 +5,7 @@ exe_path = "B:\\mbks\\python_2_lab\\exe\\vuln13.exe"
 config_path = "B:\\mbks\\python_2_lab\\config_13"
 config_path_default = "B:\\mbks\\python_2_lab\\exe\\config_13_default"
 mut_folder_path = "B:\\mbks\\python_2_lab\\exe\\mutations"
-
+dercov_path = 'C:\\Users\\max\\Downloads\\DynamoRIO-Windows-10.0.0\\bin32\\drrun.exe'
 fuzzer = fileFuzzer.FileFuzzer(exe_path, config_path, mut_folder_path)
 
 def menu_bar():
@@ -16,7 +16,8 @@ def menu_bar():
     print("5 - Random mutation")
     print("6 - Find dividing fields")
     print("7 - Reborn config file")
-    print("8 - Exit()")
+    print("8 - Test programm")
+    print("0 - Exit()")
 
 def command_one_auto_fuzzing(fuzzer):
     fuzzer.auto_fuzzing()
@@ -53,3 +54,6 @@ def command_seven_reborn_config(_):
         print('Succesfull complete')
     except:
         print('smt wrong:/')
+
+def command_eight_test_programm(fuzzer):
+    fuzzer.test_prog()

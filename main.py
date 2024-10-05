@@ -9,7 +9,8 @@ if __name__ == "__main__":
         5 : command_five_random_mutation,
         6 : command_six_find_div_fields,
         7 : command_seven_reborn_config,
-        8 : exit
+        8 : command_eight_test_programm,
+        0 : exit
     }
     while True:
         menu_bar()
