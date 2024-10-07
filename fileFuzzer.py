@@ -9,7 +9,7 @@ class FileFuzzer:
         self.conf_file_path = conf_file_path
         self.mut_folder_path = mut_folder_path
         self.exe_path = exe_path
-        self.offset = 100
+        self.offset = 1
         self.iteration = 1
         self.running = False
 
@@ -30,12 +30,15 @@ class FileFuzzer:
 
     def auto_fuzzing(self):
         error = False
-        interactive_swith = int(raw_input('U want use interactive debugger'))
+        interactive_swith = int(raw_input('If u want use interactive debugger press 1. (Not press 0)'))
+        what_we_do = int(raw_input('If u want push byte press 1. If u want use random mutation press 0'))
         while not error:
             counter = 0
             for _ in self.test_cases:
-                self.change_bytes(self.offset, self.offset, counter, 1)
-                #self.mutate_file()
+                if what_we_do == 0:
+                    self.change_bytes(self.offset, self.offset, counter, 1)
+                else:
+                    self.add_bytes_in_end(100)
                 print("File mutation #", self.iteration)
                 print("Current offset: ", self.offset)
                 print("Test case`s index: ", counter)
@@ -56,7 +59,7 @@ class FileFuzzer:
                 self.iteration += 1
                 counter += 1
 
-            self.offset += 1
+            self.offset += 100
 
     def test_prog(self):
         print("Launch program...")
@@ -126,14 +129,28 @@ class FileFuzzer:
         stream = fd.read()
         fd.close()
 
-        if file_offset > len(stream):
-            file_offset = len(stream)
+        # if file_offset > len(stream):
+        #     file_offset = len(stream)
 
         new_bytes = self.test_cases[index] * amount
 
         fuzz_file = stream[0:file_offset]
         fuzz_file += bytes(new_bytes)
         fuzz_file += stream[file_offset:]
+
+        fd = open(self.conf_file_path, "wb")
+        fd.write(fuzz_file)
+        fd.close()
+    
+    def add_bytes_in_end(self,amount):
+        fd = open(self.conf_file_path, "rb")
+        stream = fd.read()
+        fd.close()
+
+        new_bytes = self.test_cases[3] * amount
+
+        fuzz_file = stream
+        fuzz_file += bytes(new_bytes)
 
         fd = open(self.conf_file_path, "wb")
         fd.write(fuzz_file)
