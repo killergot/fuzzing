@@ -7,7 +7,8 @@ config_path2 = "B:\\mbks\\python_2_lab\\exe\\config_13"
 config_path_default = "B:\\mbks\\python_2_lab\\exe\\config_13_default"
 mut_folder_path = "B:\\mbks\\python_2_lab\\exe\\mutations"
 dercov_path = 'C:\\Users\\max\\Downloads\\DynamoRIO-Windows-10.0.0\\bin32\\drrun.exe'
-fuzzer = fileFuzzer.FileFuzzer(exe_path, config_path, mut_folder_path)
+base_block_from_dercov = 528 # col bb from base config.
+fuzzer = fileFuzzer.FileFuzzer(exe_path, config_path, mut_folder_path,base_block_from_dercov)
 
 def menu_bar():
     print("1 - Auto-fuzzing")

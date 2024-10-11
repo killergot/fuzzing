@@ -2,4 +2,4 @@
 *.pyc
 \.vscode
 *.exe.*
-\mutations\num*
+\mutations

@@ -17,7 +17,7 @@ def mark_res(conf_file_path,mut_folder_path,iteration,exe_path):
     folder_path = mut_folder_path + '\\num_' + str(iteration)
     if create_folder(folder_path):
         save_config(conf_file_path,folder_path,iteration)
-        run_dercov(folder_path,exe_path)
+        
 
 def save_config(conf_file_path,mut_folder_path,iteration):
         fd = open(conf_file_path, "rb")
@@ -45,7 +45,8 @@ def analize_coverage(folder_path):
                 count_base_block +=1
     
     fd.close()
-    os.remove(folder_path+'\\'+temp)
+    if not 'num' in folder_path:
+        os.remove(folder_path+'\\'+temp)
     return count_base_block
 
 

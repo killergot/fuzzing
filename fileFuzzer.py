@@ -5,13 +5,14 @@ from research import save_config,mark_res,run_dercov,analize_coverage
 
 
 class FileFuzzer:
-    def __init__(self, exe_path, conf_file_path,mut_folder_path):
+    def __init__(self, exe_path, conf_file_path,mut_folder_path,col_bb):
         self.conf_file_path = conf_file_path
         self.mut_folder_path = mut_folder_path
         self.exe_path = exe_path
         self.offset = 1
         self.iteration = 1
         self.running = False
+        self.col_bb = col_bb
 
         self.test_cases = ["\x00", "\x80", "\x7f", "\xff",
                            "\x7f\xff", "\x80\x00", "\x7f\xfe", "\xff\xff",
@@ -32,6 +33,7 @@ class FileFuzzer:
         error = False
         interactive_swith = int(raw_input('If u want use interactive debugger press 1. (Not press 0)'))
         what_we_do = int(raw_input('If u want push byte press 1. If u want use random mutation press 0'))
+        bb_current = self.col_bb
         while not error:
             counter = 0
             for _ in self.test_cases:
@@ -44,17 +46,18 @@ class FileFuzzer:
                 print("Test case`s index: ", counter)
 
                 # New debugging thread
-                status = self.test_prog()[0]
-
+                status,bb = self.test_prog()
+                
                 if status != 0:
                     mark_res(self.conf_file_path,self.mut_folder_path,self.iteration,self.exe_path)
                     myDebugger.simple_debugger([self.exe_path],interactive_swith)
                     error = True
                     break
-
-                fd = open(self.conf_file_path, "wb")
-                fd.write(self.stream)
-                fd.close()
+                
+                if bb > bb_current:
+                    fd = open(self.conf_file_path, "wb")
+                    fd.write(self.stream)
+                    fd.close()
 
                 self.iteration += 1
                 counter += 1
