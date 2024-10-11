@@ -1,6 +1,7 @@
 import os
+import re
 
-# drrun.exe -t drcov -logdir B:\mbks\python_2_lab\exe\mutations\drc  -- B:\\mbks\\python_2_lab\\exe\\vuln13.exe
+# drrun.exe -t drcov -logdir B:\mbks\python_2_lab\exe\mutations  -- B:\\mbks\\python_2_lab\\exe\\vuln13.exe
 
 def create_folder(folder_path):
     if not os.path.exists(folder_path):
@@ -28,4 +29,27 @@ def save_config(conf_file_path,mut_folder_path,iteration):
         fd.close()
 
 def run_dercov(folder_path,exe_path):
-    os.system('C:\\Users\\max\\Downloads\\DynamoRIO-Windows-10.0.0\\bin32\\drrun.exe' + ' -t drcov -logdir '+ folder_path +' -- ' + exe_path)
+    os.system('C:\\Users\\max\\Downloads\\DynamoRIO-Windows-10.0.0\\bin32\\drrun.exe' + ' -t drcov -dump_text -logdir '+ folder_path +' -- ' + exe_path)
+    return analize_coverage(folder_path)
+
+def analize_coverage(folder_path):
+    temp = os.listdir(folder_path)[1]
+    fd = open(folder_path+'\\'+temp)
+    count_str = 0
+    count_base_block = 0
+    for i in fd:
+        count_str += 1
+        if count_str > 18:
+            number = re.search(r'\d+', i).group()
+            if number in ['0','1']:
+                count_base_block +=1
+    
+    fd.close()
+    os.remove(folder_path+'\\'+temp)
+    return count_base_block
+
+
+if __name__ == '__main__':
+    run_dercov("B:\\mbks\\python_2_lab\\exe\\mutations\\base","B:\\mbks\\python_2_lab\\exe\\vuln13.exe")
+    print(analize_coverage("B:\\mbks\\python_2_lab\\exe\\mutations"))
+

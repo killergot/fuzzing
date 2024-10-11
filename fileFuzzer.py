@@ -1,7 +1,7 @@
 import random
 import subprocess
 import myDebugger
-from research import save_config,run_dercov,mark_res
+from research import save_config,mark_res,run_dercov,analize_coverage
 
 
 class FileFuzzer:
@@ -44,7 +44,7 @@ class FileFuzzer:
                 print("Test case`s index: ", counter)
 
                 # New debugging thread
-                status = self.test_prog()
+                status = self.test_prog()[0]
 
                 if status != 0:
                     mark_res(self.conf_file_path,self.mut_folder_path,self.iteration,self.exe_path)
@@ -63,12 +63,12 @@ class FileFuzzer:
 
     def test_prog(self):
         print("Launch program...")
-        proc = subprocess.Popen([self.exe_path], stdout=subprocess.PIPE)
+        proc = subprocess.Popen([self.exe_path],stdout=None)
         status = subprocess.Popen.wait(proc)
+        bb = run_dercov("B:\\mbks\\python_2_lab\\exe\\mutations",self.exe_path)
 
         print("Program finished with status "), status
-        print(proc.stdout.read())
-        return status
+        return [status, bb]
 
     def mutate_file(self, rand_range=1000):
 
